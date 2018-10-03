@@ -21,21 +21,28 @@ public class HauteMer extends Ocean {
 
 	
 	protected void remplirDeLignesEau() {
-		//TODO
+		for(int i = 0; i < NB_LIGNES; i++) {
+			grille.add(new LigneEauProfonde(NB_COLONNES));
+		}		
 	}
 
 	public int getNbLignes() {
-		return 0;		
-		//TODO
+		return NB_LIGNES;
 	}
 
 
 	@Override
 	public int getNbColonnes() {
-		// TODO Auto-generated method stub
-		return 0;
+		return NB_COLONNES;
 	}
 
+
+	public HauteMer(int forme) {
+		super(forme);
+		// TODO Auto-generated constructor stub
+	}
+
+	
 
 
 }

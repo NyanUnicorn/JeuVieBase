@@ -1,14 +1,19 @@
 package jeuvie.ocean.vague.casemer;
 
+import java.util.List;
+
 import jeuvie.Couleur;
+import jeuvie.bestiole.Bestiole;
 import jeuvie.bestiole.Dauphin;
+import jeuvie.bestiole.IBestiole;
 import jeuvie.ocean.IOcean;
 
 public class CaseEauProfonde extends Case {
+	
 
-
+	
 	protected void setBestioleVivante() {
-		//TODO
+		occupant = new Dauphin();
 	}
 
 	/**
@@ -21,8 +26,30 @@ public class CaseEauProfonde extends Case {
 	 * @return si cette case précise doit survivre ou non.
 	 */
 	public void evoluer(IOcean copie, int col, int lg){
-		//TODO
+		if(copie.compterVoisinsVivants(col, lg) >= 3 && vide) {
+			this.setVivante();
+		} else if ((copie.compterVoisinsVivants(col, lg) < 2 || copie.compterVoisinsVivants(col, lg) > 3) && !vide) {
+			occupant.tuer();
+		}
+	}
+
+	public CaseEauProfonde() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
+	public CaseEauProfonde(IBestiole b) {
+		super(b);
+	}
+	
+	private CaseEauProfonde(Dauphin occupant, boolean vide) {
+		
+	}
+
+
+	@Override
+	public Couleur getCouleurCaseVide() {
+		return Couleur.BLEU_SOMBRE;
+	}
 	
 }

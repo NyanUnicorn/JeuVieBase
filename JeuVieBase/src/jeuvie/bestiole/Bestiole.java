@@ -40,7 +40,7 @@ public abstract class Bestiole implements IBestiole {
 
 	@Override
 	public String toString() {
-		return "[numero="+NUMERO+";état="+etat+"]";
+		return "Bestiole[numero="+NUMERO+";état="+etat+"]";
 	}
 	
 	

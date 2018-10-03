@@ -23,6 +23,7 @@ public abstract class Ocean implements IOcean {
 	}
 
 	public Ocean(int forme) {
+		super();
 		this.grille=new ArrayList<ILigneEau>(getNbLignes());
 		this.remplirDeLignesEau();
 		this.creerFormeDeVie(forme);
@@ -33,7 +34,7 @@ public abstract class Ocean implements IOcean {
 	}
 
 	private void setBestiole(int col, int lg){
-		//TODO
+		grille.get(lg).get(col).setVivante();
 	}
 
 	protected void creerFormeDeVie(int forme){
@@ -135,12 +136,59 @@ public abstract class Ocean implements IOcean {
 	}
 
 	public void etapeSuivante(){
-		//TODO
+		
+		Ocean copie = null;
+		try {
+			copie = (Ocean) this.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(ILigneEau ligneeau : grille) {
+			for(int j = 0; j < this.getNbLignes(); j++) {
+				for(int i = 0; i < this.getNbColonnes(); i++) {
+					ligneeau.get(i).evoluer(copie, i, j);
+				}
+			}
+		}
 	}
 
 	public int compterVoisinsVivants(int iCol, int jLg) {
-		// TODO
-		return 0;
+		int vV = 0;
+		int x = iCol - 1;
+		int y = jLg - 1;
+		
+		for(int i = 0; i < 8; i ++) {
+			try {
+				if(grille.get(y).get(x).contientBestioleVivante()) {
+					vV++;
+				}
+			}catch(Exception e) {
+				
+			}
+			
+			
+			switch(i) {
+			case 0:
+			case 1:
+				x++;
+				break;
+			case 2:
+			case 3:
+				y++;
+				break;
+			case 4:
+			case 5:
+				x--;
+				break;
+			case 6:
+				y--;
+				break;
+			default:
+				break;
+			}
+		}
+		return vV;
 	}
 
 }
