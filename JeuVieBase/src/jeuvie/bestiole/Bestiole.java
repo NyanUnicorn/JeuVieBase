@@ -33,8 +33,14 @@ public abstract class Bestiole implements IBestiole {
 	
 	public Bestiole() {
 		super();
+		etat = getCouleurVivant();
 		NUMERO = compteur;
 		compteur++;
+	}
+
+	@Override
+	public String toString() {
+		return "[numero="+NUMERO+";état="+etat+"]";
 	}
 	
 	
