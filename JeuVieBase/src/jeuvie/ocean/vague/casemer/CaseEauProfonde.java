@@ -34,22 +34,34 @@ public class CaseEauProfonde extends Case {
 	}
 
 	public CaseEauProfonde() {
-		super();
-		// TODO Auto-generated constructor stub
+		super();// TODO Auto-generated constructor stub
 	}
 	
+	
+	/*
 	public CaseEauProfonde(IBestiole b) {
 		super(b);
-	}
+	}*/
 	
-	private CaseEauProfonde(Dauphin occupant, boolean vide) {
-		
-	}
+
 
 
 	@Override
 	public Couleur getCouleurCaseVide() {
 		return Couleur.BLEU_SOMBRE;
+	}
+	
+	protected CaseEauProfonde clone()  {
+		CaseEauProfonde rep = null;
+		try {
+			rep= (CaseEauProfonde) super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		if (!isVide()) {
+			rep.occupant=((Dauphin) this.occupant).clone();
+		}
+		return rep;
 	}
 	
 }

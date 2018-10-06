@@ -27,7 +27,8 @@ public abstract class Case implements ICase {
 
 
 	public boolean contientBestioleVivante(){
-		return occupant != null ? occupant.isVivante() : false;
+		//return occupant != null ? occupant.isVivante() : false;
+		return !vide && occupant.isVivante();
 	}
 
 	public void tuerEventuelOccupant(){
@@ -39,7 +40,7 @@ public abstract class Case implements ICase {
 
 	@Override
 	public boolean isVide() {
-		return false;
+		return vide;
 	}
 
 	

@@ -137,20 +137,20 @@ public abstract class Ocean implements IOcean {
 
 	public void etapeSuivante(){
 		
-		Ocean copie = null;
+		IOcean copie = null;
 		try {
-			copie = (Ocean) this.clone();
+			copie = (IOcean) this.clone();
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(ILigneEau ligneeau : grille) {
+		//for(ILigneEau ligneeau : grille) {
 			for(int j = 0; j < this.getNbLignes(); j++) {
+				ILigneEau ligneeau = this.get(j);
 				for(int i = 0; i < this.getNbColonnes(); i++) {
 					ligneeau.get(i).evoluer(copie, i, j);
 				}
 			}
-		}
+		//}
 	}
 
 	public int compterVoisinsVivants(int iCol, int jLg) {
@@ -187,6 +187,9 @@ public abstract class Ocean implements IOcean {
 			default:
 				break;
 			}
+		}
+		if (vV>0) {
+			System.out.println("ocean cpter voisins "+vV);
 		}
 		return vV;
 	}
